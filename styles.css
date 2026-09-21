@@ -216,3 +216,69 @@ footer {
     padding: 20px 0;
     margin-top: 40px;
 }
+
+/* ============================= /
+/ GALERÍA DE FOTOS DEL PRODUCTO /
+/ ============================= */
+
+.galeria {
+position: relative;
+width: 100%;
+}
+
+/* Imagen de la galería */
+
+.galeria img {
+width: 100%;
+max-height: 400px;
+object-fit: contain;
+background: #fff;
+border-radius: 8px;
+padding: 20px;
+display: block;
+}
+
+/* Botones de navegación */
+
+.galeria .flecha {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+
+width: 45px;
+height: 45px;
+
+border: none;
+border-radius: 50%;
+
+background-color: rgba(26, 26, 26, 0.75);
+color: white;
+
+font-size: 22px;
+cursor: pointer;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+transition: background-color 0.2s;
+
+}
+
+/* Efecto al pasar el ratón */
+
+.galeria .flecha {
+background-color: #1a1a1a;
+}
+
+/* Botón izquierdo */
+
+.galeria .flecha.izquierda {
+left: 10px;
+}
+
+/* Botón derecho */
+
+.galeria .flecha.derecha {
+right: 10px;
+}
