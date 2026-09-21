@@ -1,51 +1,141 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canon Prima Tele - Madrid Analog Rental</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
 
-    <header>
-        <div class="container">
-            <h1><a href="index.html">Madrid Analog Rental</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html#catalogo">Volver al Catálogo</a></li>
-                    <li><a href="index.html#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Canon Prima Tele - Madrid Analog Rental</title> <link rel="stylesheet" href="styles.css"> </head> <body>
 
-    <main class="detalle-producto container">
-        <div class="col-imagen">
-            <img src="Fotos/Canon-prima/Canon1.jpg" alt="Canon Prima Tele">
-        </div>
-        <div class="col-info">
-            <h2>Canon Prima Tele</h2>
-            <p class="precio">Precio: 12€ / día</p>
-            <div class="descripcion">
-                <p>La <strong>Canon Prima Tele</strong> (también conocida como Autoboy Tele en Japón) es una cámara analógica única de los años 80. A diferencia de los zooms convencionales, cuenta con un mecanismo que conmuta entre dos lentes fijas: un angular de 35mm y un teleobjetivo de 60mm con solo pulsar un botón.</p>
-                <h3>Características principales:</h3>
-                <ul>
-                    <li>Doble focal fija incorporada: 35mm f/3.5 y 60mm f/5.6.</li>
-                    <li>Estética retro ochentera muy marcada.</li>
-                    <li>Flash integrado automático con opción de apagado.</li>
-                    <li>Carga, avance y rebobinado de película totalmente automáticos.</li>
-                </ul>
-            </div>
-            <a href="index.html#contacto" class="btn">Reservar esta cámara</a>
-        </div>
-    </main>
+<header>
+    <div class="container">
+        <h1><a href="index.html">Madrid Analog Rental</a></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#catalogo">Volver al Catálogo</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Madrid Analog Rental. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+<main class="detalle-producto container">
 
-</body>
-</html>
+    <!-- GALERÍA -->
+    <div class="col-imagen">
+
+        <div class="galeria">
+            
+            <img id="fotoPrincipal"
+                 src="Fotos/Canon-prima/Canon1.jpg"
+                 alt="Canon Prima Tele">
+
+            <button class="flecha izquierda" onclick="fotoAnterior()">❮</button>
+
+            <button class="flecha derecha" onclick="fotoSiguiente()">❯</button>
+
+        </div>
+
+    </div>
+
+
+    <!-- INFORMACIÓN -->
+    <div class="col-info">
+
+        <h2>Canon Prima Tele</h2>
+
+        <p class="precio">Precio: 12€ / día</p>
+
+        <div class="descripcion">
+
+            <p>
+                La <strong>Canon Prima Tele</strong> (también conocida
+                como Autoboy Tele en Japón) es una cámara analógica
+                única de los años 80. A diferencia de los zooms
+                convencionales, cuenta con un mecanismo que conmuta
+                entre dos lentes fijas: un angular de 35mm y un
+                teleobjetivo de 60mm con solo pulsar un botón.
+            </p>
+
+            <h3>Características principales:</h3>
+
+            <ul>
+                <li>Doble focal fija incorporada: 35mm f/3.5 y 60mm f/5.6.</li>
+                <li>Estética retro ochentera muy marcada.</li>
+                <li>Flash integrado automático con opción de apagado.</li>
+                <li>Carga, avance y rebobinado de película totalmente automáticos.</li>
+            </ul>
+
+        </div>
+
+        <a href="index.html#contacto" class="btn">
+            Reservar esta cámara
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+    <div class="container">
+        <p>
+            &copy; 2026 Madrid Analog Rental.
+            Todos los derechos reservados.
+        </p>
+    </div>
+</footer>
+
+
+<script>
+
+    // ==========================================
+    // FOTOS DE LA CÁMARA
+    // ==========================================
+
+    const fotos = [
+        "Fotos/Canon-prima/Canon1.jpg",
+        "Fotos/Canon-prima/Canon2.jpg",
+        "Fotos/Canon-prima/Canon3.jpg"
+    ];
+
+
+    // Foto actual
+    let fotoActual = 0;
+
+
+    // Imagen principal
+    const imagen = document.getElementById("fotoPrincipal");
+
+
+    // ==========================================
+    // SIGUIENTE FOTO
+    // ==========================================
+
+    function fotoSiguiente() {
+
+        fotoActual++;
+
+        if (fotoActual >= fotos.length) {
+            fotoActual = 0;
+        }
+
+        imagen.src = fotos[fotoActual];
+
+    }
+
+
+    // ==========================================
+    // FOTO ANTERIOR
+    // ==========================================
+
+    function fotoAnterior() {
+
+        fotoActual--;
+
+        if (fotoActual < 0) {
+            fotoActual = fotos.length - 1;
+        }
+
+        imagen.src = fotos[fotoActual];
+
+    }
+
+</script>
+
+</body> </html>
