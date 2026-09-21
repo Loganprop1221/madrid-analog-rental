@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -8,44 +9,152 @@
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <h1><a href="index.html">Madrid Analog Rental</a></h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html#catalogo">Volver al Catálogo</a></li>
-                    <li><a href="index.html#contacto">Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+```
+<header>
+    <div class="container">
+        <h1><a href="index.html">Madrid Analog Rental</a></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#catalogo">Volver al Catálogo</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <main class="detalle-producto container">
-        <div class="col-imagen">
-            <img src="Fotos/Pentax-espio/Pentax1.jpg" alt="Pentax Espio 120 Mi">
-        </div>
-        <div class="col-info">
-            <h2>Pentax Espio 120 Mi</h2>
-            <p class="precio">Precio: 12€ / día</p>
-            <div class="descripcion">
-                <p>La <strong>Pentax Espio 120 Mi</strong> es una de las cámaras compactas de 35mm más pequeñas y avanzadas de la famosa línea Espio de Pentax. Lanzada a finales de los 90, destaca por su elegante cuerpo de aluminio y un objetivo zoom de alto rendimiento que va desde los 38mm hasta los 120mm.</p>
-                <h3>Características principales:</h3>
-                <ul>
-                    <li>Lente Pentax Zoom 38mm - 120mm.</li>
-                    <li>Enfoque automático multipunto preciso.</li>
-                    <li>Modos de flash avanzados (reducción de ojos rojos, sincronización lenta).</li>
-                    <li>Diseño ultra compacto de bolsillo.</li>
-                </ul>
-            </div>
-            <a href="index.html#contacto" class="btn">Reservar esta cámara</a>
-        </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Madrid Analog Rental. Todos los derechos reservados.</p>
+<main class="detalle-producto container">
+
+    <!-- GALERÍA DE FOTOS -->
+    <div class="col-imagen">
+
+        <div class="galeria">
+
+            <img id="fotoPrincipal"
+                 src="Fotos/Pentax-espio/Pentax1.jpg"
+                 alt="Pentax Espio 120 Mi">
+
+            <button class="flecha izquierda"
+                    onclick="fotoAnterior()">❮</button>
+
+            <button class="flecha derecha"
+                    onclick="fotoSiguiente()">❯</button>
+
         </div>
-    </footer>
+
+    </div>
+
+
+    <!-- INFORMACIÓN DE LA CÁMARA -->
+    <div class="col-info">
+
+        <h2>Pentax Espio 120 Mi</h2>
+
+        <p class="precio">Precio: 12€ / día</p>
+
+        <div class="descripcion">
+
+            <p>
+                La <strong>Pentax Espio 120 Mi</strong> es una de las
+                cámaras compactas de 35mm más pequeñas y avanzadas de
+                la famosa línea Espio de Pentax. Lanzada a finales de
+                los 90, destaca por su elegante cuerpo de aluminio y
+                un objetivo zoom de alto rendimiento que va desde los
+                38mm hasta los 120mm.
+            </p>
+
+            <h3>Características principales:</h3>
+
+            <ul>
+                <li>Lente Pentax Zoom 38mm - 120mm.</li>
+                <li>Enfoque automático multipunto preciso.</li>
+                <li>Modos de flash avanzados (reducción de ojos rojos, sincronización lenta).</li>
+                <li>Diseño ultra compacto de bolsillo.</li>
+            </ul>
+
+        </div>
+
+        <a href="index.html#contacto" class="btn">
+            Reservar esta cámara
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+    <div class="container">
+        <p>
+            &copy; 2026 Madrid Analog Rental.
+            Todos los derechos reservados.
+        </p>
+    </div>
+</footer>
+
+
+<!-- JAVASCRIPT DE LA GALERÍA -->
+<script>
+
+    // ==========================================
+    // FOTOS DE LA PENTAX
+    // ==========================================
+
+    const fotos = [
+        "Fotos/Pentax-espio/Pentax1.jpg",
+        "Fotos/Pentax-espio/Pentax2.jpg",
+        "Fotos/Pentax-espio/Pentax3.jpg",
+        "Fotos/Pentax-espio/Pentax4.jpg"
+    ];
+
+
+    // Foto que se está mostrando
+    let fotoActual = 0;
+
+
+    // Imagen principal
+    const imagen = document.getElementById("fotoPrincipal");
+
+
+    // ==========================================
+    // SIGUIENTE FOTO
+    // ==========================================
+
+    function fotoSiguiente() {
+
+        fotoActual++;
+
+        // Si llegamos a la última,
+        // volvemos a la primera
+        if (fotoActual >= fotos.length) {
+            fotoActual = 0;
+        }
+
+        imagen.src = fotos[fotoActual];
+
+    }
+
+
+    // ==========================================
+    // FOTO ANTERIOR
+    // ==========================================
+
+    function fotoAnterior() {
+
+        fotoActual--;
+
+        // Si estamos en la primera,
+        // vamos a la última
+        if (fotoActual < 0) {
+            fotoActual = fotos.length - 1;
+        }
+
+        imagen.src = fotos[fotoActual];
+
+    }
+
+</script>
+```
 
 </body>
 </html>
