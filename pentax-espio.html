@@ -1,11 +1,54 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pentax Espio 120 Mi - Madrid Analog Rental</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos para el Modal (Ventana flotante de ampliación) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            padding-top: 50px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.9); 
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 80vh;
+            object-fit: contain;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .cerrar-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cerrar-modal:hover {
+            color: #bbb;
+        }
+
+        /* Cambiar el cursor al pasar por la foto principal para indicar que es clickeable */
+        #fotoPrincipal {
+            cursor: zoom-in;
+        }
+    </style>
 </head>
 <body>
 
@@ -26,67 +69,53 @@
 
     <!-- GALERÍA DE FOTOS -->
     <div class="col-imagen">
-
         <div class="galeria">
-
+            <!-- Añadido onclick="abrirModal()" para activar la ampliación -->
             <img id="fotoPrincipal"
                  src="Fotos/Pentax-espio/Pentax1.jpg"
-                 alt="Pentax Espio 120 Mi">
+                 alt="Pentax Espio 120 Mi"
+                 onclick="abrirModal()">
 
-            <button class="flecha izquierda"
-                    onclick="fotoAnterior()">❮</button>
-
-            <button class="flecha derecha"
-                    onclick="fotoSiguiente()">❯</button>
-
+            <button class="flecha izquierda" onclick="fotoAnterior()">❮</button>
+            <button class="flecha derecha" onclick="fotoSiguiente()">❯</button>
         </div>
-
     </div>
 
 
     <!-- INFORMACIÓN DE LA CÁMARA -->
     <div class="col-info">
-
         <h2>Pentax Espio 120 Mi</h2>
-
         <p class="precio">Precio: 12€ / día</p>
-
         <div class="descripcion">
-
             <p>
-                La <strong>Pentax Espio 120 Mi</strong> es una de las
-                cámaras compactas de 35mm más pequeñas y avanzadas de
-                la famosa línea Espio de Pentax. Lanzada a finales de
-                los 90, destaca por su elegante cuerpo de aluminio y
-                un objetivo zoom de alto rendimiento que va desde los
-                38mm hasta los 120mm.
+                La <strong>Pentax Espio 120 Mi</strong> es una de las cámaras compactas de 35mm más pequeñas y avanzadas de la famosa línea Espio de Pentax. Lanzada a finales de los 90, destaca por su elegante cuerpo de aluminio y un objetivo zoom de alto rendimiento que va desde los 38mm hasta los 120mm.
             </p>
-
             <h3>Características principales:</h3>
-
             <ul>
                 <li>Lente Pentax Zoom 38mm - 120mm.</li>
                 <li>Enfoque automático multipunto preciso.</li>
                 <li>Modos de flash avanzados (reducción de ojos rojos, sincronización lenta).</li>
                 <li>Diseño ultra compacto de bolsillo.</li>
             </ul>
-
         </div>
-
         <a href="index.html#contacto" class="btn">
             Reservar esta cámara
         </a>
-
     </div>
 
 </main>
+
+<!-- ESTRUCTURA DEL MODAL (Oculto por defecto) -->
+<div id="miModal" class="modal" onclick="cerrarModal()">
+    <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+    <img class="modal-content" id="imgAmpliada">
+</div>
 
 
 <footer>
     <div class="container">
         <p>
-            &copy; 2026 Madrid Analog Rental.
-            Todos los derechos reservados.
+            &copy; 2026 Madrid Analog Rental. Todos los derechos reservados.
         </p>
     </div>
 </footer>
@@ -94,11 +123,9 @@
 
 <!-- JAVASCRIPT DE LA GALERÍA -->
 <script>
-
     // ==========================================
     // FOTOS DE LA PENTAX
     // ==========================================
-
     const fotos = [
         "Fotos/Pentax-espio/Pentax1.jpg",
         "Fotos/Pentax-espio/Pentax2.jpg",
@@ -106,54 +133,41 @@
         "Fotos/Pentax-espio/Pentax4.jpg"
     ];
 
-
-    // Foto que se está mostrando
     let fotoActual = 0;
-
-
-    // Imagen principal
     const imagen = document.getElementById("fotoPrincipal");
 
-
-    // ==========================================
-    // SIGUIENTE FOTO
-    // ==========================================
-
     function fotoSiguiente() {
-
         fotoActual++;
-
-        // Si llegamos a la última,
-        // volvemos a la primera
         if (fotoActual >= fotos.length) {
             fotoActual = 0;
         }
-
         imagen.src = fotos[fotoActual];
-
     }
 
-
-    // ==========================================
-    // FOTO ANTERIOR
-    // ==========================================
-
     function fotoAnterior() {
-
         fotoActual--;
-
-        // Si estamos en la primera,
-        // vamos a la última
         if (fotoActual < 0) {
             fotoActual = fotos.length - 1;
         }
-
         imagen.src = fotos[fotoActual];
-
     }
 
+    // ==========================================
+    // FUNCIONES PARA EL MODAL (AMPLIAR FOTO)
+    // ==========================================
+    const modal = document.getElementById("miModal");
+    const imgAmpliada = document.getElementById("imgAmpliada");
+
+    function abrirModal() {
+        modal.style.display = "block";
+        // Carga dinámicamente la foto activa del carrusel
+        imgAmpliada.src = imagen.src; 
+    }
+
+    function cerrarModal() {
+        modal.style.display = "none";
+    }
 </script>
-```
 
 </body>
 </html>
