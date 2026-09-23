@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Olympus Pen FT - Madrid Analog Rental</title>
+
+    <link rel="stylesheet" href="../../styles.css">
+
+    <style>
+        /* ============================= */
+        /* MODAL DE AMPLIACIÓN */
+        /* ============================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 85%;
+            max-height: 80vh;
+            object-fit: contain;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .cerrar-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cerrar-modal:hover {
+            color: #bbb;
+        }
+
+        /* La foto principal se puede ampliar */
+        #fotoPrincipal {
+            cursor: zoom-in;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+
+        <h1>
+            <a href="../../index.html">
+                Madrid Analog Rental
+            </a>
+        </h1>
+
+        <nav>
+            <ul>
+                <li>
+                    <a href="../../index.html#catalogo">
+                        Volver al Catálogo
+                    </a>
+                </li>
+
+                <li>
+                    <a href="../../index.html#contacto">
+                        Contacto
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+
+<main class="detalle-producto container">
+
+    <!-- ============================= -->
+    <!-- GALERÍA -->
+    <!-- ============================= -->
+
+    <div class="col-imagen">
+
+        <div class="galeria">
+
+            <img id="fotoPrincipal"
+                 src="pen1.jpg"
+                 alt="Olympus Pen FT"
+                 onclick="abrirModal()">
+
+            <button class="flecha izquierda"
+                    onclick="fotoAnterior()">
+                ❮
+            </button>
+
+            <button class="flecha derecha"
+                    onclick="fotoSiguiente()">
+                ❯
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- INFORMACIÓN -->
+    <!-- ============================= -->
+
+    <div class="col-info">
+
+        <h2>Olympus Pen FT</h2>
+
+        <p class="precio">
+            Precio: 17€ / día
+        </p>
+
+        <div class="descripcion">
+
+            <p>
+                La <strong>Olympus Pen FT</strong> es una de las cámaras
+                más singulares de la fotografía analógica. Fabricada en
+                Japón durante los años 60, es una cámara réflex de medio
+                formato que utiliza película de 35mm para producir
+                fotografías verticales de medio fotograma.
+            </p>
+
+            <p>
+                Su reducido tamaño, su diseño mecánico y su particular
+                visor hacen de la Pen FT una cámara especialmente
+                interesante para quienes buscan una experiencia de
+                fotografía analógica diferente.
+            </p>
+
+            <h3>Características principales:</h3>
+
+            <ul>
+                <li>Formato de medio fotograma (Half Frame).</li>
+
+                <li>
+                    Utiliza película estándar de 35mm.
+                </li>
+
+                <li>
+                    Hasta 72 fotografías aproximadamente por carrete
+                    de 36 exposiciones.
+                </li>
+
+                <li>
+                    Sistema réflex de objetivos intercambiables.
+                </li>
+
+                <li>
+                    Visor réflex con fotómetro incorporado.
+                </li>
+
+                <li>
+                    Cuerpo compacto y completamente mecánico.
+                </li>
+
+                <li>
+                    Fabricación japonesa de los años 60.
+                </li>
+            </ul>
+
+        </div>
+
+
+        <a href="../../index.html#contacto" class="btn">
+            Reservar esta cámara
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- ============================= -->
+<!-- MODAL DE AMPLIACIÓN -->
+<!-- ============================= -->
+
+<div id="miModal"
+     class="modal"
+     onclick="cerrarModal()">
+
+    <span class="cerrar-modal"
+          onclick="cerrarModal()">
+        &times;
+    </span>
+
+    <img class="modal-content"
+         id="imgAmpliada">
+
+</div>
+
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            &copy; 2026 Madrid Analog Rental.
+            Todos los derechos reservados.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    // ==========================================
+    // FOTOS DE LA OLYMPUS PEN FT
+    // ==========================================
+
+    const fotos = [
+        "pen1.jpg",
+        "pen2.jpg",
+        "pen3.jpg",
+        "pen4.jpg"
+    ];
+
+    let fotoActual = 0;
+
+    const imagen =
+        document.getElementById("fotoPrincipal");
+
+
+    // ==========================================
+    // FOTO SIGUIENTE
+    // ==========================================
+
+    function fotoSiguiente() {
+
+        fotoActual++;
+
+        if (fotoActual >= fotos.length) {
+            fotoActual = 0;
+        }
+
+        imagen.src = fotos[fotoActual];
+    }
+
+
+    // ==========================================
+    // FOTO ANTERIOR
+    // ==========================================
+
+    function fotoAnterior() {
+
+        fotoActual--;
+
+        if (fotoActual < 0) {
+            fotoActual = fotos.length - 1;
+        }
+
+        imagen.src = fotos[fotoActual];
+    }
+
+
+    // ==========================================
+    // MODAL
+    // ==========================================
+
+    const modal =
+        document.getElementById("miModal");
+
+    const imgAmpliada =
+        document.getElementById("imgAmpliada");
+
+
+    function abrirModal() {
+
+        modal.style.display = "block";
+
+        // Amplía la foto que se está viendo
+        imgAmpliada.src = imagen.src;
+    }
+
+
+    function cerrarModal() {
+
+        modal.style.display = "none";
+    }
+
+</script>
+
+</body>
+</html>
